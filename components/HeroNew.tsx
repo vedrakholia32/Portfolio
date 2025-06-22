@@ -47,9 +47,7 @@ const Hero = () => {
               transition={{ duration: 1, delay: 0.2 }}
             >
               Ved Rakholia
-            </motion.h1>
-
-            {/* Subtitle */}
+            </motion.h1>            {/* Subtitle */}
             <motion.p
               className="text-subtitle max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
@@ -57,16 +55,6 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               Web Developer & Machine Learning Enthusiast
-            </motion.p>
-
-            {/* Description */}
-            <motion.p
-              className="text-lg text-gray-500 max-w-xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              Building innovative web solutions and exploring the frontiers of artificial intelligence to create meaningful digital experiences.
             </motion.p>
           </motion.div>
         </div>

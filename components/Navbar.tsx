@@ -7,23 +7,32 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [showNavbar, setShowNavbar] = useState(false)
-
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY
       const windowHeight = window.innerHeight
       
-      // Show navbar when user scrolls past the hero parallax sections
-      // Hero component is 700vh, so show navbar when reaching about 600vh
-      const heroSectionsHeight = windowHeight * 6 // Approximately when parallax sections end
+      // Hero component is 700vh tall, so About section starts around 700vh
+      const heroSectionsHeight = windowHeight * 7 // Full parallax sections height
+      const aboutSectionStart = heroSectionsHeight
+      const delayDistance = windowHeight * 0.2 // Add 20vh delay after reaching About
       
       setIsScrolled(scrollY > 10)
-      setShowNavbar(scrollY > heroSectionsHeight)
+      
+      // Show navbar only after scrolling past About section start + delay
+      const shouldShowNavbar = scrollY > (aboutSectionStart + delayDistance)
+      
+      // Add a small timeout to prevent flickering
+      if (shouldShowNavbar !== showNavbar) {
+        setTimeout(() => {
+          setShowNavbar(shouldShowNavbar)
+        }, 100)
+      }
     }
     
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [showNavbar])
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
